@@ -36,7 +36,7 @@ import com.facebook.android.FacebookError;
 
 public class SignInActivity extends Activity {
 	
-	private EditText editText;
+	private EditText txtEmail;
 	private EditText passwordForm;
 	
 	private Handler handler;
@@ -60,18 +60,18 @@ public class SignInActivity extends Activity {
         
         handler = new Handler();
         
-        editText = (EditText)findViewById(R.id.insertemail);
-        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        txtEmail = (EditText)findViewById(R.id.insertemail);
+        txtEmail.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 			
 			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 				if(actionId == EditorInfo.IME_NULL && event.getAction() == KeyEvent.ACTION_DOWN){
-					String email = editText.getText().toString();
+					String email = txtEmail.getText().toString();
 					sendEmail(email);
 				}
 				return false;
 			}
 		});
-        editText.setImeActionLabel("Go", KeyEvent.KEYCODE_ENTER);
+        txtEmail.setImeActionLabel("Go", KeyEvent.KEYCODE_ENTER);
     }
     
     @Override
@@ -144,12 +144,23 @@ public class SignInActivity extends Activity {
 					String id = object.getString("id");
 					String name = object.getString("name");
 					String email = object.getString("email");
+					String firstname = object.getString("first_name");
+					String middlename = object.getString("middle_name");
+					String lastname = object.getString("last_name");
 
 					userProfile.setFacebookId(id);
 					userProfile.setEmail(email);
 					userProfile.setUsername(name);
 			
-					voutWorker.doFacebookAccess(null, new VoutWorker.StatusMessageListener() {
+					JSONObject userJson = new JSONObject();
+					userJson.put("id", id);
+					userJson.put("name", name);
+					userJson.put("email", email);
+					userJson.put("first_name", firstname);
+					userJson.put("middle_name", middlename);
+					userJson.put("last_name", lastname);
+					
+					voutWorker.doFacebookAccess(userJson.toString(), new VoutWorker.StatusMessageListener() {
 						
 						public void onSuccess() {
 							gotoHome();
@@ -172,10 +183,9 @@ public class SignInActivity extends Activity {
     }
     
     private void gotoHome(){
-    	finish();
-    	
-		Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-		startActivity(intent);								    	
+    	Intent intent = new Intent(this, HomeFragmentActivity.class);
+		startActivity(intent);
+		finish();								    	
     }
 
     private void sendEmail(String email){
