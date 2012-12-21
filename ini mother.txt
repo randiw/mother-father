@@ -1,1 +1,2 @@
 ini mother, bukan father
+directory vout_dev: vout masa development android. Di dalamnya ada file .apk terakhir yang bisa dicoba
