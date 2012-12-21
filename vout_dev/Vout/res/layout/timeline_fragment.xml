@@ -1,0 +1,15 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    
+    <com.dxtr.vout.view.ExtendedListView 
+        xmlns:dxtr="http://schemas.android.com/apk/res/com.dxtr.vout"
+        android:id="@+id/lvTimeline"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:choiceMode="singleChoice"
+        dxtr:scrollBarPanel="@layout/scrollbarpanel"
+        dxtr:scrollBarPanelInAnimation="@anim/in"
+        dxtr:scrollBarPanelOutAnimation="@anim/out" />
+
+</LinearLayout>

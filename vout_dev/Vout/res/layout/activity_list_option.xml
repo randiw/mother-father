@@ -1,0 +1,38 @@
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#c0bd9a"
+        android:orientation="vertical" >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <EditText
+                android:id="@+id/txtFilter"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:hint="Type your option here"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:textColorHint="#c0bd9a"
+                android:textSize="16dp" />
+
+        </FrameLayout>
+
+        <ListView
+            android:id="@+id/lvOptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:cacheColorHint="#00000000"
+            android:paddingTop="10dp" >
+
+        </ListView>
+
+    </LinearLayout>
